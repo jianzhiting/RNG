@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">RNG</string>
+    <string name="hiddenGemsTitle">Choose my Daily Lucky Egg</string>
+    <string name="realTimeNews">Real Time News of RNG</string>
+    <string name="hidden_gems">Hidden Gems</string>
+    <string name="real_time_news">Real Time News</string>
+    <string name="toast">I\'m not the egg you chosen</string>
+    <string name="loading">...Loading...</string>
+    <string name="gossip">Gossip</string>
+    <string name="gossipTitle">Typical Quotation</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

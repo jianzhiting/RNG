@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">软泥怪</string>
+    <string name="hiddenGemsTitle">挑选我的每日彩蛋</string>
+    <string name="realTimeNews">RNG的实时动态</string>
+    <string name="hidden_gems">彩蛋</string>
+    <string name="real_time_news">动态</string>
+    <string name="toast">我不是你今天挑的蛋哦</string>
+    <string name="loading">…加载中…</string>
+    <string name="gossip">聊聊</string>
+    <string name="gossipTitle">无内鬼，来点经典语录</string>
+</resources>

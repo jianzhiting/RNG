@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/real_time_news"
+        android:icon="@mipmap/real_time_news"
+        android:title="@string/real_time_news"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/gossip"
+        android:icon="@mipmap/gossip"
+        android:title="@string/gossip"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/hidden_gems"
+        android:icon="@mipmap/hidden_gems"
+        android:title="@string/hidden_gems"
+        app:showAsAction="ifRoom" />
+</menu>
