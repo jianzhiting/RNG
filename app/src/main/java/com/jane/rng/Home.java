@@ -37,22 +37,6 @@ public class Home extends Activity {
             @Override
             public void run() {
                 try {
-                    //Android6.0以上的新规
-                    int REQUEST_EXTERNAL_STORAGE = 1;
-                    String[] PERMISSIONS_STORAGE = {
-                            Manifest.permission.READ_EXTERNAL_STORAGE,
-                            Manifest.permission.WRITE_EXTERNAL_STORAGE
-                    };
-                    int permission = ActivityCompat.checkSelfPermission(Home.this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-
-                    if (permission != PackageManager.PERMISSION_GRANTED) {
-                        // We don't have permission so prompt the user
-                        ActivityCompat.requestPermissions(
-                                Home.this,
-                                PERMISSIONS_STORAGE,
-                                REQUEST_EXTERNAL_STORAGE
-                        );
-                    }
                     Thread.sleep(1200);
                     Message msg = new Message();
                     mHandler.sendMessage(msg);

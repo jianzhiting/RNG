@@ -1,12 +1,15 @@
 package com.jane.rng;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +29,7 @@ import java.util.HashMap;
 import java.util.concurrent.CountDownLatch;
 
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 public class FragmentRealTimeNews extends Fragment {
@@ -41,6 +45,23 @@ public class FragmentRealTimeNews extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        //Android6.0以上的新规
+        int REQUEST_EXTERNAL_STORAGE = 1;
+        String[] PERMISSIONS_STORAGE = {
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+        };
+        int permission = ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            // We don't have permission so prompt the user
+            ActivityCompat.requestPermissions(
+                    getActivity(),
+                    PERMISSIONS_STORAGE,
+                    REQUEST_EXTERNAL_STORAGE
+            );
+        }
 
         listView = getView().findViewById(R.id.mylist);
         listView.setEmptyView(getView().findViewById(R.id.loading));
@@ -86,7 +107,7 @@ public class FragmentRealTimeNews extends Fragment {
             public void run() {
                 listItems = new ArrayList<HashMap<String, String>>();
                 try {
-                    String url = "http://lol.duowan.com/tag/296216563281.html?pc";
+                    String url = "https://lol.duowan.com/tag/296216563281.html?pc";
                     Document doc = Jsoup.connect(url).get();
                     Elements divs = doc.select("ul > li > div");
 
@@ -97,7 +118,7 @@ public class FragmentRealTimeNews extends Fragment {
 
                         String imgLink = item_cover.first().attr("src");
                         String titles = item_cont.get(0).text();
-                        String titleLink = "http://lol.duowan.com" + item_cont.select("a[href]").first().attr("href");
+                        String titleLink = "https://lol.duowan.com" + item_cont.select("a[href]").first().attr("href");
                         String item_author = item_info.get(0).text();
                         String item_time = item_info.get(1).text();
 
@@ -137,6 +158,9 @@ public class FragmentRealTimeNews extends Fragment {
     private Bitmap getURLimage(String url) {
         Bitmap bmp = null;
         try {
+            StringBuffer sb = new StringBuffer(url);
+            sb.insert(4, "s");
+            url = sb.toString();
             URL myurl = new URL(url);
             // 获得连接
             HttpURLConnection conn = (HttpURLConnection) myurl.openConnection();
